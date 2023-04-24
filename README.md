@@ -1,2 +1,2 @@
 # pep-talk
-A pep talk generator in Python
+A sentence generator in Python
