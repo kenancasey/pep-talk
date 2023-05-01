@@ -7,13 +7,19 @@ def main():
     with open(filename, "r") as file:
         raw_lines = file.readlines()
 
+    print(raw_lines)
+
+    for line in raw_lines:
+        clean_line = line.strip()
+        print(clean_line)
+
     lines = []
     count = 0
-    for line in raw_lines:
-        clean = str.strip( line )
-        lines.append( clean  )
-        print(f"line {count}: " + line)
-        count = count + 1
+    # for line in raw_lines:
+    #     clean = str.strip( line )
+    #     lines.append( clean  )
+    #     print(f"line {count}: " + line)
+    #     count = count + 1
 
         # if line is blank, skip it
         # if line starts with a #, skip it
