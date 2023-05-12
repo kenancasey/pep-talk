@@ -1,4 +1,5 @@
 import os
+import random
 
 def main():
     filename = "excuses.txt"
@@ -7,24 +8,49 @@ def main():
     with open(filename, "r") as file:
         raw_lines = file.readlines()
 
-    print(raw_lines)
-
+    lines = []
     for line in raw_lines:
         clean_line = line.strip()
-        print(clean_line)
+        #print(clean_line)
 
-    lines = []
-    count = 0
-    # for line in raw_lines:
-    #     clean = str.strip( line )
-    #     lines.append( clean  )
-    #     print(f"line {count}: " + line)
-    #     count = count + 1
+        # skip empty lines
+        if clean_line == '':
+            continue
+        # skip comments 
+        if clean_line.startswith("#"):
+            continue 
 
-        # if line is blank, skip it
-        # if line starts with a #, skip it
-        # remove \n from each line
+        lines.append(clean_line)
 
+    first_parts = []
+    second_parts = []
+    third_parts = []
+
+    current_section = 0
+
+    for line in lines:
+        if line == '<section>':
+            current_section += 1
+        else: 
+            # regular line
+            # add to the right part list
+            if current_section == 1:
+                first_parts.append( line )
+            elif current_section == 2: 
+                second_parts.append(line)
+            elif current_section == 3 :
+                third_parts.append(line)
+        
+    # print(first_parts)
+    # print(second_parts)
+    # print(third_parts)
+
+    random_first_part = random.choice( first_parts)
+    random_second_part = random.choice( second_parts)
+    random_third_part = random.choice( third_parts)
+
+
+    print(random_first_part, random_second_part, random_third_part)
 
 
 if __name__ == "__main__":
