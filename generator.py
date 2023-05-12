@@ -2,7 +2,7 @@ import os
 import random
 
 def main():
-    filename = "excuses.txt"
+    filename = "pep-talk.txt"
     print(f"Reading {filename}")
 
     with open(filename, "r") as file:
@@ -22,36 +22,26 @@ def main():
 
         lines.append(clean_line)
 
-    first_parts = []
-    second_parts = []
-    third_parts = []
-
-    current_section = 0
+    current_section=0
+    list_of_part_lists = []
+    current_list = []
 
     for line in lines:
         if line == '<section>':
             current_section += 1
+            list_of_part_lists.append( [] )
+            current_list = list_of_part_lists[ -1]
         else: 
             # regular line
-            # add to the right part list
-            if current_section == 1:
-                first_parts.append( line )
-            elif current_section == 2: 
-                second_parts.append(line)
-            elif current_section == 3 :
-                third_parts.append(line)
-        
-    # print(first_parts)
-    # print(second_parts)
-    # print(third_parts)
+            current_list.append(line)
 
-    random_first_part = random.choice( first_parts)
-    random_second_part = random.choice( second_parts)
-    random_third_part = random.choice( third_parts)
+    #print(list_of_part_lists)
 
+    sentence = ""
+    for list in list_of_part_lists:
+        sentence += random.choice(list) + " "
 
-    print(random_first_part, random_second_part, random_third_part)
-
+    print(sentence)
 
 if __name__ == "__main__":
     main()
